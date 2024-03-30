@@ -8,7 +8,9 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
-<p th:text="|Привет, это ${title}!|"/>
+<div class="container mt-5">
+    <h1 th:text="${title}"></h1>
+</div>
 <footer th:insert="blocks/footer :: footer"></footer>
 </body>
 </html>
