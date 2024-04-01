@@ -58,7 +58,6 @@ public class BlogController {
         Optional<Post> post = postRepository.findById(id);
         List<Post> list = new ArrayList<>();
         post.ifPresent(list::add);
-        System.out.println(list.get(0).getName());
         model.addAttribute("post",list);
 
         Post post1 = postRepository.findById(id).orElseThrow();
