@@ -14,9 +14,12 @@
     <div th:each="element : ${post}" class="alert alert-info mt-2">
         <h3 th:text="${element.title}"/>
         <p th:text="${element.text}"/>
-        <p th:text="${element.views}"/>
-        <a th:href ="'/blog/'+${element.id} + '/edit'" class="btn btn-warning">Редактировать</a>
-        <a th:href ="'/blog/'+${element.id} + '/remove'" class="btn btn-warning">Удалить</a>
+        <p><b>Просмотры: </b><span th:text="${element.views}"/></p>
+        <p><b>Автор: </b><span th:text="${element.name}"/></p>
+        <a th:href ="'/blog/'+${element.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
+        <form th:action="'/blog/' + ${element.id} + '/remove'" method="post">
+            <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
     </div>
 </div>
 

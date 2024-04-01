@@ -1,9 +1,6 @@
 package ru.marinin.blog.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Post {
@@ -11,9 +8,33 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title, anons, text;
-
+    private String title, anons;
+    @Column(length = 10000)
+    private String text;
     private int views;
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Author author;
+    private String name;
+
+    public Post() {
+    }
+
+
+    public Post(String title, String anons, String text, Author author) {
+        this.title = title;
+        this.anons = anons;
+        this.text = text;
+        this.name = author.getName();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -55,12 +76,11 @@ public class Post {
         this.views = views;
     }
 
-    public Post() {
+    public Author getAuthor() {
+        return author;
     }
 
-    public Post(String title, String anons, String text) {
-        this.title = title;
-        this.anons = anons;
-        this.text = text;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }
